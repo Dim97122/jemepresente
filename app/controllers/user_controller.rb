@@ -7,7 +7,11 @@ class UserController < ApplicationController
     @user_bio= params["bio"]
     user = User.create(username: @user_name, bio: @user_bio)
     puts "User créé!"
-    redirect_to "/users/#{@user_name}"
+    if user.id != nil
+      redirect_to "/users/#{@user_name}"
+    else
+      redirect_to "/error"
+    end
   end
 
   def show
